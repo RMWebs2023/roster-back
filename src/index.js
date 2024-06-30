@@ -2,6 +2,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const express = require("express");
 const connection = require("./database.js");
+const router = require("../src/routes/index.routes.js");
 require("dotenv").config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   next();
 });
+app.use("/", router);
 
 app.listen(PORT, () => {
   connection();
